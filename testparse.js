@@ -3,7 +3,7 @@
 var RLDB = true; // print lots of shit
 var usecached = true; // use local file... don't re-download
 
-var testfire = true; // insert testfire in 1 minute
+var testfire = false; // insert testfire in 1 minute
 
 debugprint("hi there"); // friendly
 
@@ -122,7 +122,7 @@ function pollQueue(bd)
 				&& gunQueue[i].getHours()==tda.getHours())
 			{
 				// FIRE!
-				console.log("FIRE!!!!! : tda");
+				console.log("FIRE!!!!! :" + tda);
 				//
 				// insert pi shit
 				//
