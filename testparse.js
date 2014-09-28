@@ -1,9 +1,9 @@
 // take a bullet for this city
 
 var RLDB = true; // print lots of shit
-var usecached = true; // use local file... don't re-download
+var usecached = false; // use local file... don't re-download
 
-var testfire = true; // insert testfire in 1 minute
+var testfire = false; // insert testfire in 1 minute
 
 debugprint("take a bullet for this city..."); // friendly
 
@@ -34,7 +34,7 @@ var destFile = "foo.json"; // where are we stashing this locally?
 // data shit
 var thestuff; // holder for JSON
 var gunQueue = new Array(); // gun queue
-var backdate = 7; // use week old data
+var backdate = 7.5; // use week old data
 var loaded = false;
 
 // timer shit
@@ -93,16 +93,16 @@ function JSONtoQueue(stuff, bd)
 	var lastday = bd*24*60*60*1000; // milliseconds
 	var today = new Date();
 	var tda = new Date(today.getTime() - lastday); // bd days ago
+	var tdawhen = tda.getTime(); // now in epoch
 	debugprint("Today is: " + tda);
 
 	for(var i=0;i<stuff.length;i++){
         var d = new Date(Date.parse(stuff[i].timecreate));
-
+        var when = d.getTime(); // epoch for the event
+        if(when>tdawhen && when<(tdawhen+(24*60*60*1000)))
+        {
         // date matches backdate... add to queue
-        if(d.getDate()==tda.getDate()
-         && d.getFullYear()==tda.getFullYear()
-          && d.getMonth()==tda.getMonth()) {
-          	// strip duplicates
+           	// strip duplicates
           	if(stuff[i].disposition!="DUP")
           	{
 	          	q.push(d);
