@@ -5,7 +5,7 @@ var usecached = true; // use local file... don't re-download
 
 var testfire = true; // insert testfire in 1 minute
 
-debugprint("hi there"); // friendly
+debugprint("take a bullet for this city..."); // friendly
 
 // node shit
 var http = require('http');
@@ -38,7 +38,8 @@ var backdate = 7; // use week old data
 var loaded = false;
 
 // timer shit
-var timer = setInterval(pollQueue, 1000, backdate);
+var qinterval = 30*1000; // poll queue every n seconds
+var timer = setInterval(pollQueue, qinterval, backdate);
 
 // spawner shit
 var spawn = require('child_process').spawn;
