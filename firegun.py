@@ -46,11 +46,12 @@ def setStep(w1, w2, w3, w4):
 
 def fire():
   print("Python Firing Gun!!!")
-  steps = 10
+  steps = 20
   delay = 5/1000.0
   setStep(0, 0, 0, 0)
-  backward(delay,steps)
   forward(delay,steps)
+  #steps = 7
+  backward(delay,steps)
   setStep(0, 0, 0, 0)
 
 fire()
