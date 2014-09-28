@@ -3,7 +3,7 @@
 var RLDB = true; // print lots of shit
 var usecached = true; // use local file... don't re-download
 
-var testfire = false; // insert testfire in 1 minute
+var testfire = true; // insert testfire in 1 minute
 
 debugprint("hi there"); // friendly
 
@@ -39,6 +39,9 @@ var loaded = false;
 
 // timer shit
 var timer = setInterval(pollQueue, 1000, backdate);
+
+// spawner shit
+var spawn = require('child_process').spawn;
 
 //
 // FUNCTION BLOCK:
@@ -142,9 +145,12 @@ function pollQueue(bd)
 			{
 				// FIRE!
 				console.log("FIRE!!!!! :" + tda);
+
 				//
 				// insert pi shit
 				//
+				spawn('python', ['firegun.py'], { stdio: 'inherit' });
+
 				gunQueue.splice(i, 1); // remove from queue
 				dumpQueue(gunQueue); // list next fires
 				break;
